@@ -6,7 +6,7 @@ local Settings = {
     AutoThickness = true, -- Makes Thickness above futile, scales according to distance, good for less encumbered screen
     Length = 15, -- In studs of the line
     Smoothness = 0.2 -- 0.01 - Less Smooth(Faster), 1 - Smoother (Slower)
-    Switch = true -- use this variable if you wanna integrate into a GUI
+    Switch = false -- use this variable if you wanna integrate into a GUI
 }
 
 local player = game:GetService("Players").LocalPlayer
@@ -24,7 +24,7 @@ local function ESP(plr) --//Main function handling specific plr loop esp for lin
     local function Updater() --// Function to update the ESP therefore, line destinations etc every /render/
         local connection
         connection = game:GetService("RunService").RenderStepped:Connect(function() -- Putting function in a connection var in order to disconnect if needed, to save performance
-            if Setting.Switch and plr.Character ~= nil and plr.Character:FindFirstChild("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character.Humanoid.Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
+            if Settings.Switch and plr.Character ~= nil and plr.Character:FindFirstChild("Humanoid") ~= nil and plr.Character:FindFirstChild("HumanoidRootPart") ~= nil and plr.Character.Humanoid.Health > 0 and plr.Character:FindFirstChild("Head") ~= nil then
                 local headpos, OnScreen = camera:WorldToViewportPoint(plr.Character.Head.Position)
                 if OnScreen then -- checks if player is on screen or not
                     local offsetCFrame = CFrame.new(0, 0, -Settings.Length)
